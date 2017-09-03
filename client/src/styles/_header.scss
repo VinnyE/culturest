@@ -1,0 +1,38 @@
+.app-header {
+  background-color: $black;
+  display: flex;
+  align-items: self;
+  height: 8rem;
+  padding: 1em 1.5em;
+  width: 100%;
+}
+
+.header-nav {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex: 1;
+}
+
+.nav-logo {
+  a {
+    text-decoration: none;
+    color: $white;
+    
+    &:visited {
+      text-decoration: none;
+    }
+  }
+}
+
+.nav-log-in-btn {
+  background-color: $salmon;
+  border: none;
+  padding: 1em 3em;
+  border-radius: 0.3em;
+  color: $white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
