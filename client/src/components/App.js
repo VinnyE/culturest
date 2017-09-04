@@ -12,10 +12,6 @@ import LogInModal from './LogInModal';
 import Home from './Home';
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     const { auth } = this.props;
 
@@ -23,7 +19,7 @@ class App extends Component {
       <div className="app">
         <Header openLogInModal={this.props.openLogInModal} />
         { auth.logInModalOpen ? 
-        ( <LogInModal /> )
+        ( <LogInModal closeLogInModal={this.props.closeLogInModal} /> )
         : '' }
         
         <main>

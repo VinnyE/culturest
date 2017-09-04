@@ -3,11 +3,11 @@ const defaultState = {
 };
 
 const authReducer = (state = defaultState, action) => {
-  switch(action.payload) {
+  switch(action.type) {
     case 'OPEN_LOG_IN_MODAL':
-      return {...state, logInModalOpen: true}
+      return {...state, logInModalOpen: action.payload}
     case 'CLOSE_LOG_IN_MODAL':
-      return {...state, logInModalOpen: false}
+      return {...state, logInModalOpen: action.payload}
     default:
       return state;
   }

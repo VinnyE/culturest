@@ -26,7 +26,7 @@
 }
 
 .nav-log-in-btn {
-  background-color: $salmon;
+  background-color: darken($salmon, 10%);
   border: none;
   padding: 1em 3em;
   border-radius: 0.3em;
@@ -35,4 +35,10 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  outline: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $salmon;
+  }
 }
