@@ -13,13 +13,13 @@ import Home from './Home';
 
 class App extends Component {
   render() {
-    const { auth } = this.props;
+    const { auth, openLogInModal, closeLogInModal, logInToSocialMedia } = this.props;
 
     return (
       <div className="app">
-        <Header openLogInModal={this.props.openLogInModal} />
+        <Header openLogInModal={openLogInModal} />
         { auth.logInModalOpen ? 
-        ( <LogInModal closeLogInModal={this.props.closeLogInModal} /> )
+        ( <LogInModal logInToSocialMedia={logInToSocialMedia} closeLogInModal={closeLogInModal} history={this.props.history}/> )
         : '' }
         
         <main>

@@ -4,15 +4,17 @@ import twitterIcon from '../images/twitterIcon.svg';
 
 class LogInModal extends Component {
   render() {
-    const { closeLogInModal } = this.props;
+    const { closeLogInModal, logInToSocialMedia } = this.props;
     return (
       <div className="log-in-modal log-in-modal-overlay">
 
         <div className="log-in-container">
           <img className="twitter-logo" src={twitterIcon} alt="Twitter logo." />
-          <button className="log-in-container-twitter-btn">
-            Log in with Twitter
-          </button>
+          {/* <button className="log-in-container-twitter-btn"> */}
+            <a href="auth/twitter">
+              Log in with Twitter
+            </a>
+          {/* </button> */}
 
           <div className="log-in-modal-close-btn" onClick={closeLogInModal} >
             &times;
@@ -25,7 +27,8 @@ class LogInModal extends Component {
 }
 
 LogInModal.propTypes = {
-  closeLogInModal: PropTypes.func
+  closeLogInModal: PropTypes.func,
+  logInToSocialMedia: PropTypes.func
 }
 
 export default LogInModal;

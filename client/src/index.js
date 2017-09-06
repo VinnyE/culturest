@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store'
 import './styles/index.css';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister } from './registerServiceWorker';
 import { Route } from 'react-router-dom';
 
 const Root = () => {
@@ -13,7 +13,7 @@ const Root = () => {
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <div>
-          <App />
+          <App history={history}/>
         </div>
       </ConnectedRouter>
     </Provider>
@@ -21,4 +21,6 @@ const Root = () => {
 }
 
 ReactDOM.render(<Root />, document.getElementById('root'));
-registerServiceWorker();
+
+
+unregister();

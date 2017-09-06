@@ -18,9 +18,11 @@ class Header extends Component {
               </h4>
             </div>
 
-            <button className="nav-log-in-btn" onClick={openLogInModal}>
-              Log In
-            </button>
+            {/* <button className="nav-log-in-btn" onClick={openLogInModal}> */}
+            <a href="auth/twitter" className="nav-log-in-btn">
+              Log in
+            </a>
+            {/* </button> */}
           </nav>
         </header>
       </div>

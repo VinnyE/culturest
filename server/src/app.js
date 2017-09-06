@@ -6,11 +6,18 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const promisify = require('es6-promisify')
+const cors = require('cors')
+const path = require('path')
 // const flash = require('connect-flash');
 const routes = require('./routes/index')
+require('./handlers/passport')
 
 // create our Express app
 const app = express()
+
+app.use(express.static(path.join(__dirname, '..', '..', 'client/build')))
+
+app.use(cors())
 
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json())
@@ -38,5 +45,11 @@ app.use((req, res, next) => {
 })
 
 app.use('/api', routes)
+app.use('/auth', routes)
+
+app.get('/*', (req, res) => {
+  console.log('is this even being hit')
+  res.sendFile(path.join(__dirname, '..', '..', 'client/build/index.html'))
+})
 
 module.exports = app
