@@ -12,7 +12,7 @@ mongoose.connection.on('error', (err) => {
   console.error(`${err.message}`)
 })
 
-console.log(require('./src/models/User'))
+require('./src/models/User')
 
 // Start the app
 const app = require('./src/app')
