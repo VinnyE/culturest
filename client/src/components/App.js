@@ -10,6 +10,7 @@ import * as authActions from '../actions/authActions';
 import Header from './Header';
 import LogInModal from './LogInModal';
 import Home from './Home';
+import Authorize from './Authorize'
 
 class App extends Component {
   render() {
@@ -18,12 +19,10 @@ class App extends Component {
     return (
       <div className="app">
         <Header openLogInModal={openLogInModal} />
-        { auth.logInModalOpen ? 
-        ( <LogInModal logInToSocialMedia={logInToSocialMedia} closeLogInModal={closeLogInModal} history={this.props.history}/> )
-        : '' }
         
         <main>
           <Route exact path="/" component={Home} />
+          <Route exact path="/me" component={Authorize} />
         </main>
       </div>
     );
