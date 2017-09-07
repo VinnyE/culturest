@@ -7,29 +7,34 @@ passport.use(new TwitterStrategy({
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
   callbackURL: process.env.CALLBACK_URL
-},
-async function (token, tokenSecret, profile, done) {
-  try {
-    let user = await User.findOne({ 'twitter.id_str': profile.id })
+}, (token, tokenSecret, profile, done) => {
+  User.findOne({
+    'twitter.id': profile.id
+  }, (err, user) => {
+    if (err) {
+      return done(err)
+    }
 
     if (!user) {
-      user = new User({
-        name: profile.displayName,
-        username: profile.username,
-        provider: 'twitter',
-        twitter: profile._json
-      })
+      var newUser = new User()
 
-      const updatedUser = await user.save()
-      console.log('save successful', user)
+      newUser.twitter.token = token
+      newUser.twitter.id = profile.id
+      newUser.twitter.username = profile.username
+      newUser.twitter.displayName = profile.displayName
+
+      newUser.save(err => {
+        if (err) {
+          return done(err)
+        }
+
+        return done(err, user)
+      })
+    } else {
+      return done(err, user)
     }
-    return done(null, user)
-  } catch (err) {
-    console.log('save not successful', err)
-    return done(err)
-  }
-}
-))
+  })
+}))
 
 passport.serializeUser(function (user, cb) {
   cb(null, user)

@@ -7,7 +7,7 @@ const passport = require('passport')
 // })
 
 router.get('/twitter', function (req, res, next) {
-  console.log('testing')
+  console.log('step 1')
   next()
 }, passport.authenticate('twitter', {
   failureRedirect: '/',
@@ -15,10 +15,10 @@ router.get('/twitter', function (req, res, next) {
 }))
 
 router.get('/twitter/callback',
-  passport.authenticate('twitter', { failureRedirect: '/' }),
+  passport.authenticate('twitter', { failureRedirect: '/', session: false }),
   function (req, res) {
     // Successful authentication, redirect home.
-    console.log(req, res, 'success')
+    console.log('step 2')
     res.redirect('/')
   }
 )
