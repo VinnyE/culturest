@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Link } from "react-router-dom"
+import PropTypes from "prop-types";
 
 class Header extends Component {
   render() {
-    const { openLogInModal } = this.props;
+    const { loggedIn } = this.props;
 
     return (
       <div>
@@ -12,17 +12,15 @@ class Header extends Component {
           <nav className="header-nav">
             <div className="nav-logo">
               <h4>
-                <Link to='/'>
+                <Link to="/">
                   Culturest
                 </Link>
               </h4>
             </div>
 
-            {/* <button className="nav-log-in-btn" onClick={openLogInModal}> */}
-            <a href="auth/twitter" className="nav-log-in-btn">
-              Log in
+            <a href={loggedIn ? "#" : "auth/twitter"} className="nav-log-in-btn">
+              {loggedIn ? "Log out" : "Log in"}
             </a>
-            {/* </button> */}
           </nav>
         </header>
       </div>
@@ -31,7 +29,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  openLogInModal: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired
 }
 
 export default Header;

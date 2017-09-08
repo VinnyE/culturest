@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
-// import { push } from 'react-router-redux'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
@@ -8,21 +7,26 @@ import PropTypes from 'prop-types';
 import * as authActions from '../actions/authActions';
 
 import Header from './Header';
-import LogInModal from './LogInModal';
 import Home from './Home';
-import Authorize from './Authorize'
+// import Authorize from './Authorize';
+import Loading from './Loading';
 
 class App extends Component {
   render() {
-    const { auth, openLogInModal, closeLogInModal, logInToSocialMedia } = this.props;
+    const { auth } = this.props;
 
     return (
       <div className="app">
-        <Header openLogInModal={openLogInModal} />
+        <Header loggedIn={auth.loggedIn} />
         
         <main>
           <Route exact path="/" component={Home} />
-          <Route exact path="/me" component={Authorize} />
+          <Route exact path="/me" component={() => (            auth.loggedIn ? (
+              <Redirect to="/" />
+            ) : (
+              <Loading />
+            )
+          )} />
         </main>
       </div>
     );
@@ -45,4 +49,4 @@ App.propTypes = {
   closeLogInModal: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

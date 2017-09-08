@@ -11,11 +11,11 @@ const authReducer = (state = defaultState, action) => {
       return {...state, logInModalOpen: action.payload};
     case 'CLOSE_LOGIN_MODAL':
       return {...state, logInModalOpen: action.payload};
-    case 'LOGIN_REQUEST':
+    case 'AUTH_USER_REQUEST':
       return {...state, loggingIn: true};
-    case 'LOGIN_SUCESS':
+    case 'AUTH_USER_SUCCESS':
       return {...state, loggingIn: false, loggedIn: true, logInError: false};
-    case 'LOGIN_ERROR':
+    case 'AUTH_USER_ERROR':
       return {...state, loggingIn: false, loggedIn: false, logInError: true}
     default:
       return state;

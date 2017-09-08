@@ -6,7 +6,6 @@ import store, { history } from './store'
 import './styles/index.css';
 import App from './components/App';
 import { unregister } from './registerServiceWorker';
-import { Route } from 'react-router-dom';
 
 const Root = () => {
   return (

@@ -9,16 +9,16 @@ export const closeLogInModal = () => {
 }
 
 export const logInToSocialMedia = (name) => {
-  // return async dispatch => {
-  //   try {
-  //     dispatch({ type: 'LOGIN_REQUEST' });
+  return async dispatch => {
+    try {
+      dispatch({ type: 'AUTH_USER_REQUEST' });
 
-  //     const { data } = await axios.get(`http://localhost:3001/auth/${name}`);
-  //     dispatch({ type: 'LOGIN_SUCCESS', payload: data });
-  //   } catch(err) {
-  //     dispatch({ type: 'LOGIN_ERROR', payload: err });
-  //   }
-  // }
+      const { data } = await axios.get(`http://localhost:3001/auth/me`);
+      dispatch({ type: 'AUTH_USER_SUCCESS', payload: data });
+    } catch(err) {
+      dispatch({ type: 'AUTH_USER_ERROR', payload: err });
+    }
+  }
   
 }
 
