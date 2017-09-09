@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom'
+// import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
@@ -13,7 +14,7 @@ import Loading from './Loading';
 
 class App extends Component {
   render() {
-    const { auth } = this.props;
+    const { auth, logInToSocialMedia } = this.props;
 
     return (
       <div className="app">
@@ -21,10 +22,11 @@ class App extends Component {
         
         <main>
           <Route exact path="/" component={Home} />
-          <Route exact path="/me" component={() => (            auth.loggedIn ? (
+          <Route exact path="/me" component={() => 
+            (auth.loggedIn ? (
               <Redirect to="/" />
             ) : (
-              <Loading />
+               <Loading auth={auth} logInToSocialMedia={logInToSocialMedia}/>
             )
           )} />
         </main>
