@@ -9,10 +9,13 @@ class Header extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  async handleClick() {
     if (this.props.loggedIn) {
-      this.props.logOut();
-      this.props.history.push('/');
+      const logOutSuccess = await this.props.logOut();
+      
+      if (logOutSuccess) {
+        this.props.history.push('/');
+      }
     }
   }
 

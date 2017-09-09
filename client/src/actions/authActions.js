@@ -8,8 +8,23 @@ export const closeLogInModal = () => {
   return { type: 'CLOSE_LOGIN_MODAL', payload: false };
 }
 
+export const isAuthenticated = (isAuthenticated) => {
+  return { type: 'USER_LOGIN', payload: true }
+}
+
 export const logOut = () => {
-  return { type: 'USER_LOGOUT', payload: true };
+  return async dispatch => {
+    try {
+      const { data } = await axios.get('http://127.0.0.1:3001/auth/logout');
+      dispatch({ type: 'USER_LOGOUT', payload: true });
+      
+      if (data.success) {
+        return true;
+      }
+    } catch(err) {
+      dispatch({ type: 'LOGOUT_ERROR', payload: err });
+    }
+  }
 };
 
 export const logInToSocialMedia = () => {
@@ -18,10 +33,10 @@ export const logInToSocialMedia = () => {
       dispatch({ type: 'AUTH_USER_REQUEST' });
 
       const { data } = await axios.get('http://127.0.0.1:3001/auth/me');
-      console.log(data, 'data');
-      dispatch({ type: 'AUTH_USER_SUCCESS', payload: data });
+      if (data) {
+        dispatch({ type: 'AUTH_USER_SUCCESS', payload: data });
+      }
     } catch(err) {
-      console.log(err, 'err');
       dispatch({ type: 'AUTH_USER_ERROR', payload: err });
     }
   }

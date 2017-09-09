@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('passport')
-var jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 
 router.get('/me', function (req, res) {
   if (req.cookies && req.cookies.token) {
@@ -18,6 +18,13 @@ router.get('/me', function (req, res) {
   }
 })
 
+router.get('/logout', (req, res) => {
+  if (req.cookies && req.cookies.token) {
+    res.cookie('token', '', {expires: new Date(0)})
+    res.send({ success: true })
+  }
+})
+
 router.get('/twitter', function (req, res, next) {
   next()
 }, passport.authenticate('twitter', {
@@ -30,8 +37,8 @@ router.get('/twitter/callback',
   function (req, res) {
     const { _id, twitter } = req.user
     const { username } = twitter
-    const token = jwt.sign({ _id, username }, process.env.SESSION, { expiresIn: 60 * 5 })
-    res.cookie('token', token, {httpOnly: true})
+    const token = jwt.sign({ _id, username }, process.env.SESSION, { expiresIn: 60 * 1440 })
+    res.cookie('token', token)
     res.redirect('/me')
   }
 )
