@@ -3,6 +3,19 @@ import { Link } from "react-router-dom"
 import PropTypes from "prop-types";
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    if (this.props.loggedIn) {
+      this.props.logOut();
+      this.props.history.push('/');
+    }
+  }
+
   render() {
     const { loggedIn } = this.props;
 
@@ -18,9 +31,13 @@ class Header extends Component {
               </h4>
             </div>
 
-            <a href={loggedIn ? "#" : "auth/twitter"} className="nav-log-in-btn">
-              {loggedIn ? "Log out" : "Log in"}
-            </a>
+            { !loggedIn ? (
+              <a href="auth/twitter" className="nav-log-in-btn">
+                Log In
+              </a>) : (
+              <button onClick={this.handleClick} className="nav-log-in-btn">
+                Log Out
+              </button>) }
           </nav>
         </header>
       </div>

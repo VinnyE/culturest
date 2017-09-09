@@ -14,11 +14,11 @@ import Loading from './Loading';
 
 class App extends Component {
   render() {
-    const { auth, logInToSocialMedia } = this.props;
+    const { auth, logInToSocialMedia, logOut, history } = this.props;
 
     return (
       <div className="app">
-        <Header loggedIn={auth.loggedIn} />
+        <Header history={history} logOut={logOut} loggedIn={auth.loggedIn} />
         
         <main>
           <Route exact path="/" component={Home} />
