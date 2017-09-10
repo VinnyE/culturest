@@ -1,21 +1,22 @@
 .grid {
-  max-width: 1300px;
+  font-size: rem($bodyContext);
+  max-width: em(1300, $bodyContext);
   margin: 0 auto;
 
-  @media screen and (min-width: 1040px) and (max-width: 1300px) {
-    max-width: 1040px;
+  @media screen and (min-width: em(1040, $bodyContext)) and (max-width: em(1300, $bodyContext)) {
+    max-width: em(1040, $bodyContext);
   }
 
-  @media screen and (min-width: 780px) and (max-width: 1040px) {
-    max-width: 780px;
+  @media screen and (min-width: em(780, $bodyContext)) and (max-width: em(1040, $bodyContext)) {
+    max-width: em(780, $bodyContext);
   }
 
-  @media screen and (min-width: 520px) and (max-width: 780px) {
-    max-width: 520px;
+  @media screen and (min-width: em(520, $bodyContext)) and (max-width: em(780, $bodyContext)) {
+    max-width: em(520, $bodyContext);
   }
 
-  @media screen and (max-width: 520px) {
-    max-width: 260px;
+  @media screen and (max-width: em(520, $bodyContext)) {
+    max-width: em(260, $bodyContext);
   }
 }
 
@@ -28,7 +29,7 @@
 
 .grid-sizer,
 .grid-item {
-  width: 250px;
+  width: rem(250);
 }
 
 .grid-item {
@@ -36,8 +37,14 @@
   float: left;
   border-color: hsla(0, 0%, 0%, 0.5);
   border-radius: 5px;
-  padding: 5px;
+  padding: em(10, $bodyContext);
   margin: 5px; 
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eee;
+  }
 }
 
 .grid-item-image {

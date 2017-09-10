@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types";
 
+import userSvg from "../images/user.svg";
+import plusSvg from "../images/plus.svg";
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -36,15 +39,24 @@ class Header extends Component {
 
           <div className="header-right">
             { loggedIn ? (
-                <span className="header-profile">Profile</span>
+                <button className="add-pin-btn header-btn">
+                  <img src={plusSvg} alt="Add Pin" />
+                </button>
+              ) : ''
+            }
+
+            { loggedIn ? (
+                <button className="user-profile-btn header-btn">
+                  <img src={userSvg} alt="User Profile" />
+                </button>
               ) : ''
             }
 
             { !loggedIn ? (
-              <a href="auth/twitter" className="nav-log-in-btn">
+              <a href="auth/twitter" className="nav-log-in-btn header-btn">
                 Log In
               </a>) : (
-              <button onClick={this.handleClick} className="nav-log-in-btn">
+              <button onClick={this.handleClick} className="nav-log-in-btn header-btn">
                 Log Out
               </button>) }
           </div>

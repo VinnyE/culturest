@@ -2,9 +2,10 @@
   background-color: $black;
   display: flex;
   align-items: self;
-  height: 8rem;
-  padding: 1em 1.5em;
+  height: rem(80);
+  padding: em(10) em(15);
   width: 100%;
+  margin-bottom: rem(5);
 }
 
 .header-nav {
@@ -25,29 +26,47 @@
   }
 }
 
+.header-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;  
+}
+
 .nav-log-in-btn {
   background-color: darken($salmon, 10%);
   border: none;
-  padding: 1em 3em;
+  padding: em(5, $bodyContext) em(20, $bodyContext);
   border-radius: 0.3em;
   color: $white;
-  font-size: 1.5rem;
+  font-size: $bodyContext;
   font-weight: 700;
-  cursor: pointer;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   outline: 0;
-  transition: all 0.2s ease;
   text-decoration: none;
   line-height: inherit;
+  height: rem(40);
 
   &:hover {
     background-color: $salmon;
   }
 }
 
-.header-profile {
-  color: $white;
-  font-family: inherit;
-  font-size: 1.75rem;
-  margin-right: 2em;
+.user-profile-btn, .add-pin-btn {
+  background-color: $white;
+  border: 0;
+  border-radius: 5px;
+  margin-right: em(10);
+  height: rem(40);
+  width: rem(40);
+
+  &:hover {
+    background-color: $salmon;
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
 }

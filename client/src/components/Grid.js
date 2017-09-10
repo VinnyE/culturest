@@ -25,67 +25,7 @@ class Grid extends Component {
     return (
       <div ref={(ref) => { this.grid = ref }} className="grid">
         <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item image" className="grid-item-image" />
+          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item" className="grid-item-image" />
           <div className="grid-item-description">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
           </div>
