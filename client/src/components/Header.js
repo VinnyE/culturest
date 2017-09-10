@@ -34,6 +34,12 @@ class Header extends Component {
               </h4>
             </div>
 
+          <div className="header-right">
+            { loggedIn ? (
+                <span className="header-profile">Profile</span>
+              ) : ''
+            }
+
             { !loggedIn ? (
               <a href="auth/twitter" className="nav-log-in-btn">
                 Log In
@@ -41,6 +47,7 @@ class Header extends Component {
               <button onClick={this.handleClick} className="nav-log-in-btn">
                 Log Out
               </button>) }
+          </div>
           </nav>
         </header>
       </div>

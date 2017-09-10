@@ -1,8 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Grid from './Grid';
+
 
 const Home = props => (
   <div>
-    <p>Welcome home!</p>
+    <Grid />
   </div>
 )
 
