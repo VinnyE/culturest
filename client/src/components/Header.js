@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import AddPinDropDown from './AddPinDropDown';
 import PropTypes from "prop-types";
-
-import userSvg from "../images/user.svg";
-import plusSvg from "../images/plus.svg";
 
 class Header extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      addPinDropDownIsHidden: true
+    };
+
     this.handleClick = this.handleClick.bind(this);
+    this.toggleAddPinDropDown = this.toggleAddPinDropDown.bind(this);
   }
 
   async handleClick() {
@@ -20,6 +23,24 @@ class Header extends Component {
         this.props.history.push('/');
       }
     }
+  }
+
+  toggleAddPinDropDown() {
+    this.setState({
+      addPinDropDownIsHidden: !this.state.addPinDropDownIsHidden
+    });
+  }
+
+  renderLoggedInButtons() {
+    return (
+      <div className="nav-logged-in-btn-container">
+        <button onClick={ this.toggleAddPinDropDown } className="add-pin-btn nav-btn" />
+
+        <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } />
+
+        <button className="user-profile-btn nav-btn" />
+      </div>
+    );
   }
 
   render() {
@@ -38,25 +59,13 @@ class Header extends Component {
             </div>
 
           <div className="header-right">
-            { loggedIn ? (
-                <button className="add-pin-btn header-btn">
-                  <img src={plusSvg} alt="Add Pin" />
-                </button>
-              ) : ''
-            }
-
-            { loggedIn ? (
-                <button className="user-profile-btn header-btn">
-                  <img src={userSvg} alt="User Profile" />
-                </button>
-              ) : ''
-            }
+            { loggedIn ? this.renderLoggedInButtons() : '' }
 
             { !loggedIn ? (
-              <a href="auth/twitter" className="nav-log-in-btn header-btn">
+              <a href="auth/twitter" className="nav-cta-btn nav-btn">
                 Log In
               </a>) : (
-              <button onClick={this.handleClick} className="nav-log-in-btn header-btn">
+              <button onClick={this.handleClick} className="nav-cta-btn nav-btn">
                 Log Out
               </button>) }
           </div>

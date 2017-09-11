@@ -1,0 +1,37 @@
+.add-pin-dropdown {
+  background-color: $white;
+  width: rem(320, $bodyContext);
+  padding: em(20, $bodyContext) 0;
+  border-radius: 5px;
+  box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 60px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(.55,.3,.56,1.65);
+  display: block;
+}
+
+.image-url-input {
+  margin-bottom: em(10, $bodyContext);
+}
+
+.image-url-input, .description-input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  padding: em(10, $bodyContext);
+  margin-left: 10%;
+  margin-right: 10%;
+  transition: opacity 0.2s ease-in 0.3s;
+}
+
+.submit-pin-btn {
+  margin-top: em(10, $bodyContext);
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  transition: opacity 0.2s ease-in 0.3s;
+}

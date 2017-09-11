@@ -1,7 +1,6 @@
 .app-header {
   background-color: $black;
   display: flex;
-  align-items: self;
   height: rem(80);
   padding: em(10) em(15);
   width: 100%;
@@ -26,15 +25,16 @@
   }
 }
 
-.header-btn {
+.nav-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 0.2s ease;  
+  transition: all 0.2s ease;
+  outline: 0;
 }
 
-.nav-log-in-btn {
+.nav-cta-btn {
   background-color: darken($salmon, 10%);
   border: none;
   padding: em(5, $bodyContext) em(20, $bodyContext);
@@ -42,7 +42,7 @@
   color: $white;
   font-size: $bodyContext;
   font-weight: 700;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
   outline: 0;
   text-decoration: none;
   line-height: inherit;
@@ -51,6 +51,18 @@
   &:hover {
     background-color: $salmon;
   }
+}
+
+.user-profile-btn {
+  background-image: url('../images/user.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.add-pin-btn {
+  background-image: url('../images/plus.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .user-profile-btn, .add-pin-btn {
@@ -69,4 +81,9 @@
 .header-right {
   display: flex;
   align-items: center;
+}
+
+.nav-logged-in-btn-container {
+  display: flex;
+  position: relative;
 }
