@@ -1,21 +1,44 @@
 .add-pin-dropdown {
   background-color: $white;
-  width: rem(320, $bodyContext);
+  width: rem(350);
   padding: em(20, $bodyContext) 0;
   border-radius: 5px;
   box-shadow: 1px 2px 12px rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 60px;
+  top: 66px;
+  right: 0px;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.2s cubic-bezier(.55,.3,.56,1.65);
   display: block;
+
+  &:after {
+    bottom: 100%;
+    left: 78%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-bottom-color: $white;
+    border-width: 15px;
+    margin-left: -28px;
+  }
 }
+
+
 
 .image-url-input {
   margin-bottom: em(10, $bodyContext);
+}
+
+.description-input {
+  min-height: em(80, $bodyContext);
+  resize: none;
 }
 
 .image-url-input, .description-input {

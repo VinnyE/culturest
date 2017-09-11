@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 
 class AddPinDropDown extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     const { isHidden } = this.props; 
     const dropdownStyle = {
-      // display: isHidden ? 'none' : 'block',
-      height: isHidden ? 0 : '178px',
+      height: isHidden ? 0 : '225px',
       opacity: isHidden ? 0 : 1,
     };
 
@@ -15,12 +24,16 @@ class AddPinDropDown extends Component {
 
     return (
       <div style={dropdownStyle} className="add-pin-dropdown">
-        <input style={inputStyle}  placeholder="Add URL" type="text" className="image-url-input" />
-        <input style={inputStyle} placeholder="Description.." type="text" className="description-input" />
+        <form onSubmit={ this.handleSubmit }>
+          <input style={inputStyle}  placeholder="Add URL" type="text" className="image-url-input" />
 
-        <button style={inputStyle} className="submit-pin-btn nav-cta-btn nav-btn">
-          Add Pin!
-        </button>
+          <textarea style={inputStyle} placeholder="Description.." type="text" className="description-input" />
+
+          <button type="submit" style={inputStyle} className="submit-pin-btn nav-cta-btn nav-btn">
+            Add Pin!
+          </button>
+        </form>
+
       </div>
     );
   }
