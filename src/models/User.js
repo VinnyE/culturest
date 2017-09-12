@@ -7,7 +7,8 @@ const userSchema = new Schema({
     id: String,
     token: String,
     username: String,
-    displayName: String
+    displayName: String,
+    pins: [{type: Schema.Types.ObjectId, ref: 'Pin'}]
   }
 })
 

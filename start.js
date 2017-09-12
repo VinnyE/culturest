@@ -13,6 +13,7 @@ mongoose.connection.on('error', (err) => {
 })
 
 require('./src/models/User')
+require('./src/models/Pin')
 
 // Start the app
 const app = require('./src/app')

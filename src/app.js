@@ -8,7 +8,7 @@ const passport = require('passport')
 const promisify = require('es6-promisify')
 const cors = require('cors')
 const path = require('path')
-// const flash = require('connect-flash');
+const errorHandlers = require('./handlers/errorHandler')
 const routes = require('./routes/index')
 require('./handlers/passport')
 
@@ -44,8 +44,9 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api', routes)
-app.use('/auth', routes)
+app.use('/', routes)
+
+app.use(errorHandlers.mongoDBValidationErrors)
 
 app.get('/*', (req, res) => {
   console.log('is this even being hit')
