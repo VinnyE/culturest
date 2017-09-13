@@ -21,6 +21,11 @@ exports.authUser = passport.authenticate('twitter', {
   session: false
 })
 
+exports.authToken = passport.authenticate('jwt', {
+  failureRedirect: '/',
+  session: false
+})
+
 exports.authSuccess = (req, res) => {
   const { _id, twitter } = req.user
   const { username } = twitter
