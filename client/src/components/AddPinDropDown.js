@@ -9,6 +9,14 @@ class AddPinDropDown extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    
+    const formData = {
+      url: this.input.value,
+      description: this.textarea.value
+    }
+
+    this.props.handleAddPin(formData);
+    console.log(this.textarea.value, this.input.value)
   }
 
   render() {
@@ -25,9 +33,9 @@ class AddPinDropDown extends Component {
     return (
       <div style={dropdownStyle} className="add-pin-dropdown">
         <form onSubmit={ this.handleSubmit }>
-          <input style={inputStyle}  placeholder="Add URL" type="text" className="image-url-input" />
+          <input ref={(ref) => {this.input = ref}} style={inputStyle}  placeholder="Add URL" type="text" className="image-url-input" />
 
-          <textarea style={inputStyle} placeholder="Description.." type="text" className="description-input" />
+          <textarea ref={(ref) => {this.textarea = ref}} style={inputStyle} placeholder="Description.." type="text" className="description-input" />
 
           <button type="submit" style={inputStyle} className="submit-pin-btn nav-cta-btn nav-btn">
             Add Pin!

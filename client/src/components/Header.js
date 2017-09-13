@@ -36,7 +36,7 @@ class Header extends Component {
       <div className="nav-logged-in-btn-container">
         <button onClick={ this.toggleAddPinDropDown } className="add-pin-btn nav-btn" />
 
-        <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } />
+        <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } handleAddPin={this.props.handleAddPin} />
 
         <button className="user-profile-btn nav-btn" />
       </div>

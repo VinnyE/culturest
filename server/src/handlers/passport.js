@@ -1,7 +1,36 @@
 const passport = require('passport')
 const TwitterStrategy = require('passport-twitter')
+const JwtStrategy = require('passport-jwt').Strategy
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
+
+const cookieExtractor = function (req) {
+  var token = null
+  if (req && req.cookies) {
+    token = req.cookies['token']
+  }
+  return token
+}
+
+const opts = {}
+opts.jwtFromRequest = cookieExtractor
+opts.secretOrKey = process.env.SESSION
+
+passport.use(new JwtStrategy(opts,
+  (jwtPayload, done) => {
+    User.findOne({
+      token: jwtPayload.token
+    }, (err, user) => {
+      if (err) return done(err)
+
+      if (user) {
+        return done(null, user)
+      } else {
+        return done(null, false)
+      }
+    })
+  })
+)
 
 passport.use(new TwitterStrategy({
   consumerKey: process.env.CONSUMER_KEY,

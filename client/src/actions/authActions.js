@@ -15,7 +15,7 @@ export const isAuthenticated = (isAuthenticated) => {
 export const logOut = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get('http://127.0.0.1:3001/auth/logout');
+      const { data } = await axios.get('http://127.0.0.1:3001/user/logout');
       dispatch({ type: 'USER_LOGOUT', payload: true });
       
       if (data.success) {

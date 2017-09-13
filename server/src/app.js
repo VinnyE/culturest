@@ -35,7 +35,7 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
-// // Passport JS is what we use to handle our logins
+// Passport JS is what we use to handle our logins
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -48,8 +48,14 @@ app.use('/', routes)
 
 app.use(errorHandlers.mongoDBValidationErrors)
 
+if (app.get('env') === 'development') {
+  /* Development Error Handler - Prints stack trace */
+  app.use(errorHandlers.developmentErrors)
+}
+
+app.use(errorHandlers.productionErrors)
+
 app.get('/*', (req, res) => {
-  console.log('is this even being hit')
   res.sendFile(path.join(__dirname, '..', '..', 'client/build/index.html'))
 })
 

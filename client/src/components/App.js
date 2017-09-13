@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as authActions from '../actions/authActions';
+import * as pinActions from '../actions/pinActions';
 
 import Header from './Header';
 import Home from './Home';
@@ -31,11 +32,11 @@ class App extends Component {
   }
 
   render() {
-    const { auth, logInToSocialMedia, logOut, history } = this.props;
+    const { addPin, auth, logInToSocialMedia, logOut, history } = this.props;
 
     return (
       <div className="app">
-        <Header history={history} logOut={logOut} loggedIn={auth.loggedIn} />
+        <Header history={history} logOut={logOut} loggedIn={auth.loggedIn} handleAddPin={addPin}/>
         
         <main>
           <Route exact path="/" component={Home} />
@@ -54,12 +55,13 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    pin: state.pin,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators(authActions, dispatch);
+  return bindActionCreators({...authActions, ...pinActions}, dispatch);
 };
 
 App.propTypes = {

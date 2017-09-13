@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Pin = mongoose.model('Pin')
 const User = mongoose.model('User')
 
-exports.addPin = (req, res, next) => {
+exports.addPin = async (req, res, next) => {
   const { url, description } = req.body
 
   let newPin = new Pin()
@@ -10,18 +10,17 @@ exports.addPin = (req, res, next) => {
   newPin.description = description
   newPin.imgURL = url
 
-  newPin.save((err, document) => {
-    if (err) next(err)
+  try {
+    const document = await newPin.save()
+    const user = await User.findById(document.user)
 
-    User.findById(document._id, (err, user) => {
-      if (err) next(err)
+    if (!user) return next()
 
-      user.pins.push(document)
-      user.save((err) => {
-        if (err) next(err)
+    user.twitter.pins.push(document)
+    await user.save()
 
-        return res.json(document)
-      })
-    })
-  })
+    return res.json(document)
+  } catch (err) {
+    next(err)
+  }
 }
