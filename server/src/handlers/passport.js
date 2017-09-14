@@ -18,11 +18,12 @@ opts.secretOrKey = process.env.SESSION
 
 passport.use(new JwtStrategy(opts,
   (jwtPayload, done) => {
+    console.log('request')
     User.findOne({
       token: jwtPayload.token
     }, (err, user) => {
+      console.log('err, user', err, user)
       if (err) return done(err)
-
       if (user) {
         return done(null, user)
       } else {

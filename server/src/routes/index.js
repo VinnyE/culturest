@@ -12,5 +12,6 @@ router.get('/auth/twitter', authController.authUser)
 router.get('/auth/twitter/callback', authController.authUser, authController.authSuccess)
 
 router.post('/pin/addpin', authController.authToken, pinController.addPin)
+router.post('/pin/all', function (req, res, next) { console.log('test'); next() }, authController.authToken, pinController.getAllPins)
 
 module.exports = router
