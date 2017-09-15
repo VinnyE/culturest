@@ -11,7 +11,8 @@ exports.validateToken = (req, res) => {
     }
 
     return res.send({
-      username: decodedUser.username
+      username: decodedUser.username,
+      id: decodedUser._id
     })
   }
 }

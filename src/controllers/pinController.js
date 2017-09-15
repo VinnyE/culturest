@@ -32,7 +32,6 @@ exports.getAllPins = async (req, res, next) => {
     if (!Pins) next()
 
     res.json(Pins)
-    console.log(Pins)
   } catch (err) {
     next(err)
   }

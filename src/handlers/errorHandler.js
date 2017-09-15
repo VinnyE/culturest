@@ -24,7 +24,6 @@ exports.mongoDBValidationErrors = (err, req, res, next) => {
   const errorMessages = []
   const errorKeys = Object.keys(err.errors)
   errorKeys.forEach(key => errorMessages.push(err.errors[key].message))
-  console.log(errorMessages, 'stop 1')
   res.status(500).send(errorMessages)
 }
 
