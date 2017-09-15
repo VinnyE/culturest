@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import GridItem from './GridItem'
 import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';
 import brokenImage from '../images/brokenimage.png';
@@ -22,17 +24,23 @@ class Grid extends Component {
   }
 
   render() {
+    const { pins } = this.props;
     return (
       <div ref={(ref) => { this.grid = ref }} className="grid">
-        <div className="grid-item">
-          <img src="http://lorempixel.com/output/fashion-q-c-640-480-7.jpg" alt="grid item" className="grid-item-image" />
-          <div className="grid-item-description">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-          </div>
-        </div>
+       {pins
+        ? pins.map((pin, idx) => {
+            return (
+              <GridItem key={idx} url={ pin.imgURL } description={ pin.description } />
+            )
+          })
+         : ''}
       </div>
     );
   }
 }
+
+Grid.propTypes = {
+  pins: PropTypes.array
+};
 
 export default Grid;

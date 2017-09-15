@@ -31,15 +31,19 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getAllPins()
+  }
+
   render() {
-    const { addPin, auth, logInToSocialMedia, logOut, history } = this.props;
+    const { pin, addPin, auth, logInToSocialMedia, logOut, history } = this.props;
 
     return (
       <div className="app">
         <Header history={history} logOut={logOut} loggedIn={auth.loggedIn} handleAddPin={addPin}/>
         
         <main>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={() => <Home pins={pin.pins} />} />
           <Route exact path="/me" component={() => 
             (auth.loggedIn ? (
               <Redirect to="/" />
@@ -66,6 +70,7 @@ const mapDispatchToProps = (dispatch) => {
 
 App.propTypes = {
   auth: PropTypes.object.isRequired,
+  pin: PropTypes.object,
   openLogInModal: PropTypes.func,
   closeLogInModal: PropTypes.func
 };

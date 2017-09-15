@@ -16,7 +16,6 @@ class AddPinDropDown extends Component {
     }
 
     this.props.handleAddPin(formData);
-    console.log(this.textarea.value, this.input.value)
   }
 
   render() {
