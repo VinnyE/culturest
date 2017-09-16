@@ -13,10 +13,9 @@ exports.addPin = async (req, res, next) => {
 
     const document = await newPin.save()
     const user = await User.findById(document.user)
-
     if (!user) return next()
 
-    user.twitter.pins.push(document)
+    user.pins.push(document)
     await user.save()
 
     return res.json(document)

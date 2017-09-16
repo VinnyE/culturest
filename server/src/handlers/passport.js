@@ -45,13 +45,13 @@ passport.use(new TwitterStrategy({
 
     if (!user) {
       var newUser = new User()
-
       newUser.twitter.token = token
+      newUser.twitter.avatar = profile.photos[0].value
       newUser.twitter.id = profile.id
       newUser.twitter.username = profile.username
       newUser.twitter.displayName = profile.displayName
 
-      newUser.save(err => {
+      newUser.save((err, user) => {
         if (err) {
           return done(err)
         }
