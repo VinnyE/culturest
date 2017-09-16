@@ -40,7 +40,7 @@
   padding: em(10, $bodyContext);
   margin: 5px; 
   transition: all 0.2s ease;
-  cursor: pointer;
+  // cursor: pointer;
 
   &:hover {
     background-color: #eee;
@@ -50,4 +50,27 @@
 .grid-item-image {
   width: 100%;
   border-radius: 5px;  
+}
+
+.grid-item-description {
+  padding: em(5, $bodyContext) 0 ;
+  // border-bottom: 1px solid #ccc;
+}
+
+.grid-item-author-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: em(10, $bodyContext) 0;
+}
+
+.grid-item-avatar {
+  border-radius: 50%;
+}
+
+.grid-item-username {
+  cursor: pointer;
+  &:hover {
+    color: $salmon;
+  }
 }

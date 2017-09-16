@@ -3,10 +3,13 @@ import Grid from './Grid';
 
 class Home extends Component {
   render() {
-    const { pins } = this.props
+    const { pins, getUserPins } = this.props;
     return (
       <div>
-        <Grid pins={pins} />
+        <Grid
+        getUserPins={getUserPins}
+        pins={pins}
+        />
       </div>
     );
   }

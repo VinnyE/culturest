@@ -1,3 +1,5 @@
+// Could just abstract these into a general server request, but being explicit is fine for now. 
+
 const defaultState = {
   pinAddRequested: false,
   pinAddSuccess: false,
@@ -6,6 +8,7 @@ const defaultState = {
   pinGetSuccess: false,
   pinGetError: false,
   pins: null,
+  userPins: null,
 };
 
 const pinReducer = (state = defaultState, action) => {
@@ -21,6 +24,12 @@ const pinReducer = (state = defaultState, action) => {
     case 'PIN_GET_SUCCESS':
       return {...state, pins: action.payload, pinGetRequested: false, pinGetSuccess: true, pinGetError: false};
     case 'PIN_GET_ERROR':
+      return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: true};
+    case 'USER_PIN_GET_REQUEST':
+      return {...state, pinGetRequested: true, pinGetSuccess: false, pinGetError: false};
+    case 'USER_PIN_GET_SUCCESS':
+      return {...state, userPins: action.payload, pinGetRequested: false, pinGetSuccess: true, pinGetError: false};
+    case 'USER_PIN_GET_ERROR':
       return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: true};
     default:
       return state;

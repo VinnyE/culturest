@@ -11,11 +11,11 @@ class Header extends Component {
       addPinDropDownIsHidden: true
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleLogOutClick = this.handleLogOutClick.bind(this);
     this.toggleAddPinDropDown = this.toggleAddPinDropDown.bind(this);
   }
 
-  async handleClick() {
+  async handleLogOutClick() {
     if (this.props.loggedIn) {
       const logOutSuccess = await this.props.logOut();
       
@@ -32,13 +32,14 @@ class Header extends Component {
   }
 
   renderLoggedInButtons() {
+    const { getUserPins } = this.props;
     return (
       <div className="nav-logged-in-btn-container">
         <button onClick={ this.toggleAddPinDropDown } className="add-pin-btn nav-btn" />
 
         <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } handleAddPin={this.props.handleAddPin} />
 
-        <button className="user-profile-btn nav-btn" />
+        <button onClick={ getUserPins } className="user-profile-btn nav-btn" />
       </div>
     );
   }
@@ -65,7 +66,7 @@ class Header extends Component {
               <a href="auth/twitter" className="nav-cta-btn nav-btn">
                 Log In
               </a>) : (
-              <button onClick={this.handleClick} className="nav-cta-btn nav-btn">
+              <button onClick={this.handleLogOutClick} className="nav-cta-btn nav-btn">
                 Log Out
               </button>) }
           </div>

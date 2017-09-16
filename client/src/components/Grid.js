@@ -24,13 +24,22 @@ class Grid extends Component {
   }
 
   render() {
-    const { pins } = this.props;
+    const { pins, getUserPins } = this.props;
     return (
       <div ref={(ref) => { this.grid = ref }} className="grid">
        {pins
         ? pins.map((pin, idx) => {
+          console.log(pin)
             return (
-              <GridItem key={idx} url={ pin.imgURL } description={ pin.description } />
+              <GridItem 
+                key={idx}
+                url={ pin.imgURL }
+                description={ pin.description } 
+                getUserPins={ getUserPins }
+                avatar={ pin.user.twitter.avatar }
+                username={ pin.user.twitter.username }
+                id={ pin._id }
+              />
             )
           })
          : ''}
