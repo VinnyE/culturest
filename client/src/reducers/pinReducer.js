@@ -31,8 +31,17 @@ const pinReducer = (state = defaultState, action) => {
       return {...state, userPins: action.payload, pinGetRequested: false, pinGetSuccess: true, pinGetError: false};
     case 'USER_PIN_GET_ERROR':
       return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: true};
-    case 'RESET_PIN_STATE':
-      return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: false};
+    case 'USER_PIN_DELETE_REQUEST':
+      return {...state, pinDeleteRequested: true, pinDeleteSuccess: false, pinDeleteError: false};
+    case 'USER_PIN_DELETE_SUCCESS':
+      return {...state, 
+        userPins: state.userPins.filter(pin => String(pin._id) !== String(action.payload._id)), 
+        pinDeleteRequested: false, 
+        pinDeleteSuccess: true, 
+        pinDeleteError: false
+      };
+    case 'USER_PIN_DELETE_ERROR':
+      return {...state, pinDeleteRequested: false, pinDeleteSuccess: false, pinDeleteError: true};
     default:
       return state;
   }

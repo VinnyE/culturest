@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 class GridItem extends Component {
   render() {
-    const { user, url, description, avatar, username, id, getUserPins } = this.props;
-    console.log(user, id)
+    const { deletePin, user, url, description, avatar, username, pinUserId, pinId, getUserPins } = this.props;
+    // console.log(user, pinId)
     return (
       <div className="grid-item">
         <img src={ url } alt={ description } className="grid-item-image" />
@@ -13,12 +13,12 @@ class GridItem extends Component {
         </div>
         <div className="grid-item-author-info">
           <img className="grid-item-avatar" src={avatar} alt={username} />
-          <a onClick={() => this.props.getUserPins(id) }className="grid-item-username">
+          <a onClick={() => this.props.getUserPins(pinUserId) }className="grid-item-username">
             {username}
           </a>
         </div>
-        {user && (user.id === id)
-        ? <span className="grid-item-delete">Delete</span>
+        {user && (user.id === pinUserId)
+        ? <span onClick={() => deletePin(pinId) } className="grid-item-delete">Delete</span>
         : ''}
       </div>
     );

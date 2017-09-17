@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '../components/Grid';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUserPins } from '../actions/pinActions';
+import { getUserPins, deletePin } from '../actions/pinActions';
 import { withRouter } from 'react-router-dom';
 
 class Profile extends Component {
@@ -10,7 +10,7 @@ class Profile extends Component {
     super(props);
 
     this.getUserPins = this.getUserPins.bind(this);
-    this.deletePost = this.deletePost.bind(this);
+    this.deletePin = this.deletePin.bind(this);
   }
 
   componentDidMount() {
@@ -21,8 +21,8 @@ class Profile extends Component {
     }
   }
 
-  async deletePost(id) {
-    console.log(id)
+  async deletePin(id) {
+    this.props.deletePin(id)
   }
 
   async getUserPins(id) {
@@ -43,7 +43,7 @@ class Profile extends Component {
       <div>
        <Grid 
         pins={pin.userPins}
-        deletePost={this.deletePost}
+        deletePin={this.deletePin}
         getUserPins={this.getUserPins}
         user={auth.user}
       />
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({getUserPins}, dispatch);
+  return bindActionCreators({getUserPins, deletePin}, dispatch);
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));

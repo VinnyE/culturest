@@ -24,7 +24,7 @@ class Grid extends Component {
   }
 
   render() {
-    const { user, pins, getUserPins, deletePost } = this.props;
+    const { user, pins, getUserPins, deletePin } = this.props;
     return (
       <div ref={(ref) => { this.grid = ref }} className="grid">
        {pins
@@ -37,8 +37,9 @@ class Grid extends Component {
                 getUserPins={ getUserPins }
                 avatar={ pin.user.twitter.avatar }
                 username={ pin.user.twitter.username }
-                id={ pin.user._id }
-                deletePost={ deletePost }
+                pinUserId={ pin.user._id }
+                pinId={pin._id}
+                deletePin={ deletePin }
                 user={user}
               />
             )

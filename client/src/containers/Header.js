@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import { getCookieValue } from '../handlers/helpers'
 import * as authActions from '../actions/authActions';
-import { getUserPins, getAllPins } from '../actions/pinActions';
+import { getUserPins, getAllPins, addPin } from '../actions/pinActions';
 
 class Header extends Component {
   constructor(props) {
@@ -126,7 +126,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({...authActions, getAllPins, getUserPins}, dispatch);
+  return bindActionCreators({...authActions, getAllPins, getUserPins, addPin}, dispatch);
 };
 
 // Header.propTypes = {
