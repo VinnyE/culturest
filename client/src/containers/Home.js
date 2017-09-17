@@ -13,7 +13,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { pinGetSuccess, pinGetError, pinGetRequested, pins } = this.props;
+    const { pinGetError, pinGetRequested, pins } = this.props;
 
     if(!pins && !pinGetError && !pinGetRequested) {
       this.props.getAllPins()    
@@ -21,9 +21,7 @@ class Home extends Component {
   }
 
   async getUserPins(id) {
-    id = id ? id : '59bd77e17765f53c8e9105cf'; 
-
-    const userPins = await this.props.getUserPins(/*this.props.auth.user.id ||*/id);
+    const userPins = await this.props.getUserPins(id);
 
     if (userPins) {
       // Showing an ID isn't really optimal.. much better would be an actual profile account. This is fine for now as only social auth is implemented at the moment.
@@ -48,7 +46,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     pins: state.pin.pins,
-    pinGetSuccess: state.pin.pinGetSuccess,
+    // pinGetSuccess: state.pin.pinGetSuccess,
     pinGetError: state.pin.pinGetError,
     pinGetRequested: state.pin.pinGetRequested
   };

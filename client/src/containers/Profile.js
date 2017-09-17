@@ -14,7 +14,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const { userPins, pinGetSuccess, pinGetError, pinGetRequested } = this.props;
+    const { userPins, pinGetError, pinGetRequested } = this.props;
     
     if(!userPins && !pinGetError && !pinGetRequested) {
       this.props.getUserPins(this.props.match.params.id);    
@@ -26,9 +26,7 @@ class Profile extends Component {
   }
 
   async getUserPins(id) {
-    id = id ? id : '59bd77e17765f53c8e9105cf'; 
-
-    const userPins = await this.props.getUserPins(/*this.props.auth.user.id ||*/id);
+    const userPins = await this.props.getUserPins(id);
 
     if (userPins) {
       // Showing an ID isn't really optimal.. much better would be an actual profile account. This is fine for now as only social auth is implemented at the moment.
@@ -55,7 +53,7 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
   return {
     userPins: state.pin.userPins,
-    pinGetSuccess: state.pin.pinGetSuccess,
+    // pinGetSuccess: state.pin.pinGetSuccess,
     pinGetError: state.pin.pinGetError,
     pinGetRequested: state.pin.pinGetRequested,
     auth: state.auth

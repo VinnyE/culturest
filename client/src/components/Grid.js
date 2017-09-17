@@ -51,7 +51,10 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  pins: PropTypes.array
+  pins: PropTypes.array,
+  user: PropTypes.object,
+  getUserPins: PropTypes.func,
+  deletePin: PropTypes.func
 };
 
 export default Grid;

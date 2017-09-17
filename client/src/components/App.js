@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Header from '../containers/Header';
 import Home from '../containers/Home';
 import Profile from '../containers/Profile';
-import AuthUser from './AuthUser';
 
 class App extends Component {
   render() {
@@ -11,8 +10,11 @@ class App extends Component {
       <div className="app">
         <Header />
         <main>
-          <Route exact path="/" component={Home} />
-          <Route path="/profile/:id" component={Profile} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/profile/:id" component={Profile} />
+            <Route component={() => <Redirect to="/" />} />
+          </Switch>
         </main>
       </div>
     );
