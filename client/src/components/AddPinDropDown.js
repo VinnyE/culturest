@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import smallLoader from '../images/spinner-small.gif';
 
 class AddPinDropDown extends Component {
   constructor(props) {
@@ -22,7 +25,7 @@ class AddPinDropDown extends Component {
   }
 
   render() {
-    const { isHidden } = this.props; 
+    const { isHidden, pinAddRequested } = this.props; 
     const dropdownStyle = {
       height: isHidden ? 0 : '225px',
       opacity: isHidden ? 0 : 1,
@@ -40,7 +43,11 @@ class AddPinDropDown extends Component {
           <textarea ref={(ref) => {this.textarea = ref}} style={inputStyle} placeholder="Description.." type="text" className="description-input" />
 
           <button type="submit" style={inputStyle} className="submit-pin-btn nav-cta-btn nav-btn">
-            Add Pin!
+           {
+             pinAddRequested
+             ? (<img src={smallLoader} alt="Loader" className="loader-icon" />)
+             : 'Add Pin!'
+           }
           </button>
         </form>
 
@@ -48,5 +55,10 @@ class AddPinDropDown extends Component {
     );
   }
 }
+
+AddPinDropDown.propTypes = {
+  pinAddRequested: PropTypes.bool,
+  isHidden: PropTypes.bool
+};
 
 export default AddPinDropDown;

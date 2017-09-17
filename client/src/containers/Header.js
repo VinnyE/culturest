@@ -78,7 +78,7 @@ class Header extends Component {
       <div className="nav-logged-in-btn-container">
         <button onClick={ this.toggleAddPinDropDown } className="add-pin-btn nav-btn" />
 
-        <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } handleAddPin={this.props.addPin} />
+        <AddPinDropDown pinAddRequested={this.props.pinAddRequested} isHidden={ this.state.addPinDropDownIsHidden } handleAddPin={this.props.addPin} />
 
         <button onClick={ () => this.getUserPins(this.props.auth.user.id) } className="user-profile-btn nav-btn" />
       </div>
@@ -119,6 +119,7 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     auth: state.auth,
+    pinAddRequested: state.pin.pinAddRequested
   };
 };
 

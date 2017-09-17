@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { getUserPins, deletePin } from '../actions/pinActions';
 import { withRouter } from 'react-router-dom';
 
+import loader from '../images/Spinner.gif';
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -35,16 +37,21 @@ class Profile extends Component {
   }
 
   render() {
-    const { userPins, auth } = this.props;
+    const { userPins, auth, pinGetRequested } = this.props;
 
     return (
       <div>
-       <Grid 
-        pins={userPins}
-        deletePin={this.deletePin}
-        getUserPins={this.getUserPins}
-        user={auth.user}
-      />
+        {
+          pinGetRequested
+          ? (<img src={loader} alt="Loader" className="loader-icon" />)
+          : ( <Grid 
+              pins={userPins}
+              deletePin={this.deletePin}
+              getUserPins={this.getUserPins}
+              user={auth.user}
+            />
+          )
+        }
       </div>
     );
   }

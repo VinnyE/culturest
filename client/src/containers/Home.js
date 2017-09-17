@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { getUserPins, getAllPins } from '../actions/pinActions';
 import { withRouter } from 'react-router-dom';
 
+import loader from '../images/Spinner.gif';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -30,14 +32,18 @@ class Home extends Component {
   }
 
   render() {
-    const { pins } = this.props;
+    const { pins, pinGetRequested} = this.props;
 
     return (
       <div>
-        <Grid
-          getUserPins={this.getUserPins}
-          pins={pins}
-        />
+        {
+          pinGetRequested 
+          ? (<img src={loader} className="loader-icon" alt='Loader' /> )
+          : (<Grid
+              getUserPins={this.getUserPins}
+              pins={pins}
+            />)
+        }
       </div>
     );
   }
