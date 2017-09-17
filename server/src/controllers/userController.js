@@ -7,19 +7,3 @@ exports.logout = (req, res) => {
     res.send({ success: true })
   }
 }
-
-exports.getUserPins = async (req, res, next) => {
-
-  try {
-    const { id } = req.params
-
-    const user = await User.findById(id, 'twitter.username pins')
-                            .populate('pins')
-
-    if (!user) return res.send(404)
-
-    res.json(user)
-  } catch (err) {
-    next(err)
-  }
-}

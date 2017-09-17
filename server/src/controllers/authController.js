@@ -15,7 +15,7 @@ exports.authSuccess = (req, res) => {
   const { _id, twitter } = req.user
   const { username } = twitter
   const token = jwt.sign({ _id, username }, process.env.SESSION, { expiresIn: 60 * 1440 })
-  console.log('success', token)
+
   res.cookie('token', token)
   res.redirect('/')
 }
