@@ -1,13 +1,5 @@
 import axios from 'axios';
 
-export const openLogInModal = () => {
-  return { type: 'OPEN_LOGIN_MODAL', payload: true };
-}
-
-export const closeLogInModal = () => {
-  return { type: 'CLOSE_LOGIN_MODAL', payload: false };
-}
-
 export const isAuthenticated = (credentials) => {
   return { type: 'USER_LOGIN', payload: credentials }
 }

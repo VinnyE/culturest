@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import * as authActions from '../actions/authActions';
 import * as pinActions from '../actions/pinActions';
 
-import Header from './Header';
+import Header from '../containers/Header';
 import Home from './Home';
 import Profile from './Profile';
 // import Authorize from './Authorize';
@@ -63,13 +63,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Header 
-          getUserPins={this.getUserPins} 
-          history={history} 
-          logOut={logOut} 
-          loggedIn={auth.loggedIn} 
-          handleAddPin={addPin}
-        />
+        <Header />
         
         <main>
           <Route exact path="/" component={() => <Home 
