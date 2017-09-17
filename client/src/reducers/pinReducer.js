@@ -31,6 +31,8 @@ const pinReducer = (state = defaultState, action) => {
       return {...state, userPins: action.payload, pinGetRequested: false, pinGetSuccess: true, pinGetError: false};
     case 'USER_PIN_GET_ERROR':
       return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: true};
+    case 'RESET_PIN_STATE':
+      return {...state, pinGetRequested: false, pinGetSuccess: false, pinGetError: false};
     default:
       return state;
   }

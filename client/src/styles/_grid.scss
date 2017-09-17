@@ -70,7 +70,20 @@
 
 .grid-item-username {
   cursor: pointer;
+  padding: em(5, $bodyContext);
+
   &:hover {
     color: $salmon;
+  }
+}
+
+.grid-item-delete {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 2.25rem;
+  color: darken($salmon, 10%);
+
+  &:hover {
+    color: ($salmon);  
   }
 }

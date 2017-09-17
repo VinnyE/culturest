@@ -21,8 +21,13 @@ export const getAllPins = () => {
     try {
       dispatch({ type: 'PIN_GET_REQUEST' });
       const { data } = await axios.get('http://127.0.0.1:3001/pin/all');
+
+      if (typeof data !== 'object') { // received a redirect
+        throw new Error('Something went wrong.');
+      }
+
       dispatch({ type: 'PIN_GET_SUCCESS', payload: data });
-      console.log(data)
+      
       if (data) {
         return true;
       }
@@ -37,9 +42,11 @@ export const getUserPins = (id) => {
     try {
       dispatch({ type: 'USER_PIN_GET_REQUEST' });
       const { data } = await axios.get(`http://127.0.0.1:3001/pin/user/${id}`);
-      
+      if (typeof data !== 'object') { // received a redirect
+        throw new Error('Something went wrong.');
+      }
+
       dispatch({ type: 'USER_PIN_GET_SUCCESS', payload: data });
-      console.log(data)
       if (data) {
         return true;
       }
@@ -47,4 +54,8 @@ export const getUserPins = (id) => {
       dispatch({ type: 'USER_PIN_GET_ERROR', payload: err });
     }
   }
+}
+
+export const resetPins = () => {
+  return { type: 'RESET_PIN_STATE' };
 }

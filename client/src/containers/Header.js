@@ -2,18 +2,32 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AddPinDropDown from '../components/AddPinDropDown';
 import PropTypes from "prop-types";
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { withRouter } from 'react-router-dom';
-
+import jwt_decode from "jwt-decode";
+import { getCookieValue } from '../handlers/helpers'
 import * as authActions from '../actions/authActions';
-import { getUserPins } from '../actions/pinActions';
+import { getUserPins, getAllPins } from '../actions/pinActions';
 
 class Header extends Component {
   constructor(props) {
     super(props);
+
+    const authToken = getCookieValue('token');
+    
+    if (authToken) {
+      let decodedUser = jwt_decode(authToken);
+      const dateNow = new Date();
+
+      if ((decodedUser.exp * 1000) > dateNow.getTime()) {
+
+        this.props.isAuthenticated({
+          username: decodedUser.username,
+          id: decodedUser._id
+        });
+      }
+    }
 
     this.state = {
       addPinDropDownIsHidden: true
@@ -22,6 +36,7 @@ class Header extends Component {
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
     this.toggleAddPinDropDown = this.toggleAddPinDropDown.bind(this);
     this.getUserPins = this.getUserPins.bind(this);
+    this.handleNavHome = this.handleNavHome.bind(this);
   }
 
   async handleLogOutClick() {
@@ -31,6 +46,16 @@ class Header extends Component {
       if (logOutSuccess) {
         this.props.history.push('/');
       }
+    }
+  }
+
+  async handleNavHome(e) {
+    e.preventDefault();
+
+    const pins = await this.props.getAllPins();
+
+    if (pins) {
+      this.props.history.push('/');
     }
   }
 
@@ -71,7 +96,7 @@ class Header extends Component {
         <nav className="header-nav">
           <div className="nav-logo">
             <h4>
-              <Link to="/">
+              <Link onClick={this.handleNavHome} to="/">
                 Culturest
               </Link>
             </h4>
@@ -101,7 +126,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({...authActions, getUserPins}, dispatch);
+  return bindActionCreators({...authActions, getAllPins, getUserPins}, dispatch);
 };
 
 // Header.propTypes = {

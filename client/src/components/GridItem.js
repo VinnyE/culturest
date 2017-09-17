@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class GridItem extends Component {
   render() {
     const { user, url, description, avatar, username, id, getUserPins } = this.props;
-
+    console.log(user, id)
     return (
       <div className="grid-item">
         <img src={ url } alt={ description } className="grid-item-image" />
@@ -17,7 +17,9 @@ class GridItem extends Component {
             {username}
           </a>
         </div>
-        
+        {user && (user.id === id)
+        ? <span className="grid-item-delete">Delete</span>
+        : ''}
       </div>
     );
   }
