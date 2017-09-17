@@ -14,7 +14,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    const { userPins, pinGetSuccess, pinGetError, pinGetRequested } = this.props.pin;
+    const { userPins, pinGetSuccess, pinGetError, pinGetRequested } = this.props;
     
     if(!userPins && !pinGetError && !pinGetRequested) {
       this.props.getUserPins(this.props.match.params.id);    
@@ -37,12 +37,12 @@ class Profile extends Component {
   }
 
   render() {
-    const { pin, auth } = this.props;
+    const { userPins, auth } = this.props;
 
     return (
       <div>
        <Grid 
-        pins={pin.userPins}
+        pins={userPins}
         deletePin={this.deletePin}
         getUserPins={this.getUserPins}
         user={auth.user}
@@ -54,7 +54,10 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    pin: state.pin,
+    userPins: state.pin.userPins,
+    pinGetSuccess: state.pin.pinGetSuccess,
+    pinGetError: state.pin.pinGetError,
+    pinGetRequested: state.pin.pinGetRequested,
     auth: state.auth
   };
 };

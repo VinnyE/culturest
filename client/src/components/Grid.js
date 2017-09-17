@@ -32,14 +32,14 @@ class Grid extends Component {
             return (
               <GridItem 
                 key={idx}
-                url={ pin.imgURL }
-                description={ pin.description } 
-                getUserPins={ getUserPins }
-                avatar={ pin.user.twitter.avatar }
-                username={ pin.user.twitter.username }
-                pinUserId={ pin.user._id }
+                url={pin.imgURL}
+                description={pin.description} 
+                getUserPins={getUserPins}
+                avatar={pin.user.twitter.avatar ? pin.user.twitter.avatar: ''}
+                username={pin.user.twitter.username}
+                pinUserId={pin.user._id}
                 pinId={pin._id}
-                deletePin={ deletePin }
+                deletePin={deletePin}
                 user={user}
               />
             )

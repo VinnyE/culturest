@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class GridItem extends Component {
   render() {
     const { deletePin, user, url, description, avatar, username, pinUserId, pinId, getUserPins } = this.props;
-    // console.log(user, pinId)
+    // console.log('GRID ITEM', description)
     return (
       <div className="grid-item">
         <img src={ url } alt={ description } className="grid-item-image" />

@@ -13,7 +13,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const { pinGetSuccess, pinGetError, pinGetRequested, pins } = this.props.pin;
+    const { pinGetSuccess, pinGetError, pinGetRequested, pins } = this.props;
 
     if(!pins && !pinGetError && !pinGetRequested) {
       this.props.getAllPins()    
@@ -32,13 +32,13 @@ class Home extends Component {
   }
 
   render() {
-    const { pin } = this.props;
+    const { pins } = this.props;
 
     return (
       <div>
         <Grid
           getUserPins={this.getUserPins}
-          pins={pin.pins}
+          pins={pins}
         />
       </div>
     );
@@ -47,7 +47,10 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    pin: state.pin,
+    pins: state.pin.pins,
+    pinGetSuccess: state.pin.pinGetSuccess,
+    pinGetError: state.pin.pinGetError,
+    pinGetRequested: state.pin.pinGetRequested
   };
 };
 

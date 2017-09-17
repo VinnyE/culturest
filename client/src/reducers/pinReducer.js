@@ -1,4 +1,6 @@
-// Could just abstract these into a general server request, but being explicit is fine for now. 
+// Could just abstract some of these into a general server request, but being explicit is fine for now.
+// There are some error hooks in here, which for the most part aren't really being handled at the moment.
+// As this is just a quick side project mvp, I won't be handling all the edge cases that are possible.
 
 const defaultState = {
   pinAddRequested: false,
@@ -16,7 +18,14 @@ const pinReducer = (state = defaultState, action) => {
     case 'PIN_ADD_REQUEST':
       return {...state, pinAddRequested: true, pinAddSuccess: false, pinAddError: false};
     case 'PIN_ADD_SUCCESS':
-      return {...state, pinAddRequested: false, pinAddSuccess: true, pinAddError: false};
+      return {
+        ...state,
+        pins: state.pins ? [...state.pins, action.payload] : null,
+        userPins: state.userPins ? [...state.userPins, action.payload] : null,
+        pinAddRequested: false,
+        pinAddSuccess: true,
+        pinAddError: false
+      };
     case 'PIN_ADD_ERROR':
       return {...state, pinAddRequested: false, pinAddSuccess: false, pinAddError: true};
     case 'PIN_GET_REQUEST':
@@ -34,10 +43,12 @@ const pinReducer = (state = defaultState, action) => {
     case 'USER_PIN_DELETE_REQUEST':
       return {...state, pinDeleteRequested: true, pinDeleteSuccess: false, pinDeleteError: false};
     case 'USER_PIN_DELETE_SUCCESS':
-      return {...state, 
-        userPins: state.userPins.filter(pin => String(pin._id) !== String(action.payload._id)), 
-        pinDeleteRequested: false, 
-        pinDeleteSuccess: true, 
+      return {
+        ...state,
+        userPins: state.userPins ? state.userPins.filter(pin => String(pin._id) !== String(action.payload._id)) : null,
+        pins: state.pins ? state.pins.filter(pin => String(pin._id) !== String(action.payload._id)) : null,
+        pinDeleteRequested: false,
+        pinDeleteSuccess: true,
         pinDeleteError: false
       };
     case 'USER_PIN_DELETE_ERROR':
