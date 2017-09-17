@@ -39,7 +39,7 @@ class Header extends Component {
 
         <AddPinDropDown isHidden={ this.state.addPinDropDownIsHidden } handleAddPin={this.props.handleAddPin} />
 
-        <button onClick={ getUserPins } className="user-profile-btn nav-btn" />
+        <button onClick={ () => getUserPins() } className="user-profile-btn nav-btn" />
       </div>
     );
   }

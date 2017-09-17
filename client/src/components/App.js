@@ -36,6 +36,7 @@ class App extends Component {
     }
 
     this.getUserPins = this.getUserPins.bind(this);
+    this.deletePost = this.deletePost.bind(this);
   }
 
   componentDidMount() {
@@ -43,12 +44,18 @@ class App extends Component {
   }
 
   async getUserPins(id) {
-    id = id ? id : '59bd23e108c984267f527948'; 
+    id = id ? id : '59bd77e17765f53c8e9105cf'; 
+
     const userPins = await this.props.getUserPins(/*this.props.auth.user.id ||*/id);
 
     if (userPins) {
-      this.props.history.push('/profile');    
+      // Showing an ID isn't really optimal.. much better would be an actual profile account. This is fine for now as only social auth is implemented at the moment.
+      this.props.history.push(`/profile/${id}`);    
     }
+  }
+
+  async deletePost(id) {
+
   }
 
   render() {
@@ -68,14 +75,12 @@ class App extends Component {
           <Route exact path="/" component={() => <Home 
           pins={pin.pins} 
           getUserPins={this.getUserPins} />} />
-          <Route exact path="/profile" component={() => <Profile pins={pin.userPins} />} />
-          {/* <Route exact path="/me" component={() => 
-            (auth.loggedIn ? (
-              <Redirect to="/" />
-            ) : (
-               <Loading auth={auth} logInToSocialMedia={logInToSocialMedia}/>
-            )
-          )} /> */}
+          <Route path="/profile/:id" component={() => <Profile 
+          getUserPins={this.getUserPins}
+          pins={pin.userPins}
+          deletePost={this.deletePost}
+          user={auth.user}
+          />} />
         </main>
       </div>
     );

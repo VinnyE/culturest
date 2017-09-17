@@ -7,7 +7,6 @@ const defaultState = {
 };
 
 const authReducer = (state = defaultState, action) => {
-  console.log('auth reducer', state, action)
   switch(action.type) {
     case 'OPEN_LOGIN_MODAL':
       return {...state, logInModalOpen: action.payload};

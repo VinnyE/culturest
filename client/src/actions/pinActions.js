@@ -37,8 +37,9 @@ export const getUserPins = (id) => {
     try {
       dispatch({ type: 'USER_PIN_GET_REQUEST' });
       const { data } = await axios.get(`http://127.0.0.1:3001/pin/user/${id}`);
-      dispatch({ type: 'USER_PIN_GET_SUCCESS', payload: data.pins });
-
+      
+      dispatch({ type: 'USER_PIN_GET_SUCCESS', payload: data });
+      console.log(data)
       if (data) {
         return true;
       }

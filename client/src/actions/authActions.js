@@ -9,7 +9,6 @@ export const closeLogInModal = () => {
 }
 
 export const isAuthenticated = (credentials) => {
-  console.log('credentials', credentials);
   return { type: 'USER_LOGIN', payload: credentials }
 }
 
@@ -35,7 +34,6 @@ export const logInToSocialMedia = () => {
 
       const { data } = await axios.get('http://127.0.0.1:3001/auth/me');
       if (data) {
-        console.log(data);
         dispatch({ type: 'AUTH_USER_SUCCESS', payload: data });
       }
     } catch(err) {

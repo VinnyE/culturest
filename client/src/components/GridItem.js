@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class GridItem extends Component {
   render() {
-    const { url, description, avatar, username, id, getUserPins } = this.props;
+    const { user, url, description, avatar, username, id, getUserPins } = this.props;
 
     return (
       <div className="grid-item">
@@ -17,6 +17,7 @@ class GridItem extends Component {
             {username}
           </a>
         </div>
+        
       </div>
     );
   }
