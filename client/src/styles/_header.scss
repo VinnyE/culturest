@@ -59,9 +59,13 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: '24px 24px';
-
+  
   @media screen and (max-width: em(768, $bodyContext)) {
     display: inline-block;
+  }
+
+  @media screen and (min-width: em(769, $bodyContext)) {
+    display: none !important;
   }
 }
 
