@@ -25,6 +25,46 @@
   }
 }
 
+.mobile-menu {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+  list-style: none;
+  font-size: 2.25rem;
+  text-align: center;
+  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+.mobile-menu-item {
+  cursor: pointer;
+  padding: em(10, $bodyContext) 0;
+  border-bottom: 1px solid $mediumGrey;
+
+  &:last-child {
+    border-bottom: none;
+  }  
+  &:hover {
+    background-color: $salmon;
+  }
+}
+
+.nav-mobile-menu-btn {
+  background-image: url('../images/menu.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: '24px 24px';
+
+  @media screen and (max-width: em(768, $bodyContext)) {
+    display: inline-block;
+  }
+}
+
 .nav-btn {
   display: flex;
   justify-content: center;
@@ -32,6 +72,12 @@
   cursor: pointer;
   transition: all 0.2s ease;
   outline: 0;
+}
+
+.nav-logout-btn {
+  @media screen and (max-width: em(768, $bodyContext)) {
+    display: none;
+  }
 }
 
 .nav-cta-btn {
@@ -57,6 +103,10 @@
   background-image: url('../images/user.svg');
   background-repeat: no-repeat;
   background-position: center center;
+  
+  @media screen and (max-width: em(768, $bodyContext)) {
+    display: none;
+  }
 }
 
 .add-pin-btn {
@@ -65,7 +115,7 @@
   background-position: center center;
 }
 
-.user-profile-btn, .add-pin-btn {
+.user-profile-btn, .add-pin-btn, .nav-mobile-menu-btn {
   background-color: $white;
   border: 0;
   border-radius: 5px;

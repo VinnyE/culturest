@@ -71,6 +71,7 @@
 .grid-item-username {
   cursor: pointer;
   padding: em(5, $bodyContext);
+  font-weight: 700;
 
   &:hover {
     color: $salmon;

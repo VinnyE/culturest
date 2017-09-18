@@ -14,7 +14,7 @@ class Header extends Component {
     super(props);
 
     const authToken = getCookieValue('token');
-    
+
     if (authToken) {
       let decodedUser = jwt_decode(authToken);
       const dateNow = new Date();
@@ -29,13 +29,23 @@ class Header extends Component {
     }
 
     this.state = {
-      addPinDropDownIsHidden: true
+      addPinDropDownIsHidden: true,
+      mobileMenuIsHidden: true
     };
 
     this.handleLogOutClick = this.handleLogOutClick.bind(this);
     this.toggleAddPinDropDown = this.toggleAddPinDropDown.bind(this);
     this.getUserPins = this.getUserPins.bind(this);
     this.handleNavHome = this.handleNavHome.bind(this);
+
+    this.handleMobileMenu = this.handleMobileMenu.bind(this);
+  }
+
+  handleMobileMenu() {
+    this.setState({
+      mobileMenuIsHidden: !this.state.mobileMenuIsHidden,
+      addPinDropDownIsHidden: true
+    })
   }
 
   async handleLogOutClick() {
@@ -69,7 +79,8 @@ class Header extends Component {
 
   toggleAddPinDropDown() {
     this.setState({
-      addPinDropDownIsHidden: !this.state.addPinDropDownIsHidden
+      addPinDropDownIsHidden: !this.state.addPinDropDownIsHidden,
+      mobileMenuIsHidden: true
     });
   }
 
@@ -103,12 +114,25 @@ class Header extends Component {
           { loggedIn ? this.renderLoggedInButtons() : '' }
 
           { !loggedIn ? (
-            <a href="auth/twitter" className="nav-cta-btn nav-btn">
+            <a href="auth/twitter" className="nav-cta-btn nav-btn nav-login-btn">
               Log In
             </a>) : (
-            <button onClick={this.handleLogOutClick} className="nav-cta-btn nav-btn">
+            <button onClick={this.handleLogOutClick} className="nav-cta-btn nav-btn nav-logout-btn">
               Log Out
             </button>) }
+
+             { loggedIn
+             ? <button className="nav-btn nav-mobile-menu-btn" onClick={this.handleMobileMenu}></button>
+             : ''} 
+           
+            { loggedIn 
+              ? <ul className="mobile-menu" style={{display: this.state.mobileMenuIsHidden ? 'none' : 'block'}} >
+                  <li className="mobile-menu-item" onClick={() => this.getUserPins(this.props.auth.user.id)}>Profile</li>
+                  <li className="mobile-menu-item" onClick={this.handleLogOutClick}>Log Out</li>
+                </ul> 
+              : ''
+            }
+
         </div>
         </nav>
       </header>
