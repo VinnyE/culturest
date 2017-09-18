@@ -15,7 +15,7 @@ require('./handlers/passport')
 // create our Express app
 const app = express()
 
-app.use(express.static(path.join(__dirname, '..', '..', 'client/build')))
+app.use(express.static(path.join(__dirname, '..', 'public/build')))
 
 app.use(cors())
 
@@ -56,7 +56,7 @@ if (app.get('env') === 'development') {
 app.use(errorHandlers.productionErrors)
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', '..', 'client/build/index.html'))
+  res.sendFile(path.join(__dirname, '..', 'client/build/index.html'))
 })
 
 module.exports = app
