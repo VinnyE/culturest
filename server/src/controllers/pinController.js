@@ -50,7 +50,6 @@ exports.getUserPins = async (req, res, next) => {
 
     res.json(pins)
   } catch (err) {
-    console.log(err)
     next(err)
   }
 }
