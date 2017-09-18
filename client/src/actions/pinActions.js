@@ -4,7 +4,7 @@ export const addPin = (pinObj) => {
   return async dispatch => {
     try {
       dispatch({ type: 'PIN_ADD_REQUEST' });
-      const { data } = await axios.post('http://127.0.0.1:3001/pin/addpin', pinObj);
+      const { data } = await axios.post('https://culturest.herokuapp.com/pin/addpin', pinObj);
       dispatch({ type: 'PIN_ADD_SUCCESS', payload: data });
 
       if (data) {
@@ -20,7 +20,7 @@ export const getAllPins = () => {
   return async dispatch => {
     try {
       dispatch({ type: 'PIN_GET_REQUEST' });
-      const { data } = await axios.get('http://127.0.0.1:3001/pin/all');
+      const { data } = await axios.get('https://culturest.herokuapp.com/pin/all');
 
       if (typeof data !== 'object') { // received a redirect
         throw new Error('Something went wrong.');
@@ -41,7 +41,7 @@ export const getUserPins = (id) => {
   return async dispatch => {
     try {
       dispatch({ type: 'USER_PIN_GET_REQUEST' });
-      const { data } = await axios.get(`http://127.0.0.1:3001/pin/user/${id}`);
+      const { data } = await axios.get(`https://culturest.herokuapp.com/pin/user/${id}`);
 
       if (typeof data !== 'object') { // received a redirect
         throw new Error('Something went wrong.');
@@ -61,7 +61,7 @@ export const deletePin = (id) => {
   return async dispatch => {
     try {
       dispatch({ type: 'USER_PIN_DELETE_REQUEST' });
-      const { data } = await axios.delete(`http://127.0.0.1:3001/pin/delete/${id}`);
+      const { data } = await axios.delete(`https://culturest.herokuapp.com/pin/delete/${id}`);
 
       if (typeof data !== 'object') { // received a redirect
         throw new Error('Something went wrong.');

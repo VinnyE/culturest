@@ -7,7 +7,7 @@ export const isAuthenticated = (credentials) => {
 export const logOut = () => {
   return async dispatch => {
     try {
-      const { data } = await axios.get('http://127.0.0.1:3001/user/logout');
+      const { data } = await axios.get('https://culturest.herokuapp.com/user/logout');
       dispatch({ type: 'USER_LOGOUT', payload: true });
       
       if (data.success) {
@@ -24,7 +24,7 @@ export const logInToSocialMedia = () => {
     try {
       dispatch({ type: 'AUTH_USER_REQUEST' });
 
-      const { data } = await axios.get('http://127.0.0.1:3001/auth/me');
+      const { data } = await axios.get('https://culturest.herokuapp.com/auth/me');
       if (data) {
         dispatch({ type: 'AUTH_USER_SUCCESS', payload: data });
       }
