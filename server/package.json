@@ -4,7 +4,8 @@
   "description": "API for FCC full stack base camp project. Based on pinterest.",
   "main": "start.js",
   "scripts": {
-    "start": "npm run lint && nodemon ./start.js",
+    "dev": "npm run lint && nodemon ./start.js",
+    "start": "node ./start.js",
     "lint": "eslint **/*.js"
   },
   "keywords": [
