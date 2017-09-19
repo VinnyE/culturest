@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "API for FCC full stack base camp project. Based on pinterest.",
   "main": "start.js",
+  "engines": {
+    "node": "8.4.0"
+  },
   "scripts": {
     "dev": "npm run lint && nodemon ./start.js",
     "start": "node ./start.js",
