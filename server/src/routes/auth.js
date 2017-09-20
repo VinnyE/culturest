@@ -4,6 +4,8 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
 router.get('/me', function (req, res) {
+  // Ideally we'd want to check for the auth header using bearer scheme.
+  // As this is only a demo, this is fine :).
   if (req.cookies && req.cookies.token) {
     let decodedUser = jwt.verify(req.cookies.token, process.env.SESSION)
     const dateNow = new Date()
