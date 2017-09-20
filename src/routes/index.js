@@ -4,7 +4,7 @@ const router = express.Router()
 const userController = require('../controllers/userController')
 const authController = require('../controllers/authController')
 const pinController = require('../controllers/pinController')
-// authController.isAuthenticated, 
+
 router.get('/user/logout', userController.logout)
 
 router.get('/auth/twitter', authController.authUser)
